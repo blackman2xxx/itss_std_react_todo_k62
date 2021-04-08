@@ -34,7 +34,7 @@ function Todo() {
   return (
     <div className="panel">
       <div className="panel-heading">
-      ITSS ToDoアプリ
+        ITSS ToDoアプリ
       </div>
       {items.map(item => (
         <TodoItem
