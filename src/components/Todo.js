@@ -13,28 +13,30 @@ import Input from "./Input";
 import Filter from "./Filter";
 
 /* カスタムフック */
-import useStorage from "../hooks/storage";
+import useFbStorage from "../hooks/fbStorage";
 
 /* ライブラリ */
 import { getKey } from "../lib/util";
 
 function Todo() {
-  const [items, putItems, clearItems] = useStorage();
+   const [items, addItem, updateItem, clearItems] = useFbStorage();
 
   const [filter, setFilter] = React.useState("ALL");
 
   const handleCheck = (checked) => {
-    const newItems = items.map((item) => {
+  /*  const newItems = items.map((item) => {
       if (item.key === checked.key) {
         item.done = !item.done;
       }
       return item;
     });
-    putItems(newItems);
+    putItems(newItems);*/
+    updateItem(checked);
   };
 
-  const handleAdd = (text) => {
-    putItems([...items, { key: getKey(), text, done: false }]);
+  const handleAdd = text => {
+    // putItems([...items, { key: getKey(), text, done: false }]);
+    addItem({ text, done: false });
   };
 
   const displayItems = items.filter((item) => {
